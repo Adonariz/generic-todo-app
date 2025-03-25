@@ -6,6 +6,9 @@ interface TaskItemProps {
   task: Task;
 }
 
+/**
+ * Элемент списка задач
+ */
 export default function TaskItem({ task }: TaskItemProps) {
   const { id, text, completed } = task;
   const { toggleTaskStatus, deleteTask } = useContext(TaskContext);
@@ -18,9 +21,7 @@ export default function TaskItem({ task }: TaskItemProps) {
           type="checkbox"
           name="status"
           checked={completed}
-          onChange={() => {
-            toggleTaskStatus(id);
-          }}
+          onChange={() => toggleTaskStatus(id)}
         />
 
         <svg
@@ -61,10 +62,7 @@ export default function TaskItem({ task }: TaskItemProps) {
       <div className="flex gap-4">
         <button
           className="rounded-sm bg-gray-400 p-2 text-white transition-colors hover:bg-red-500"
-          onClick={() => {
-            console.log("delete task", id);
-            deleteTask(id);
-          }}
+          onClick={() => deleteTask(id)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
