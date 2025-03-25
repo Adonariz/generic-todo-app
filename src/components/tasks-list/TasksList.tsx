@@ -12,7 +12,7 @@ export default function TasksList() {
         tasks.map((task) => <TaskItem key={task.id} task={task} />)}
 
       {tasks.length === 0 && (
-        <li className="text-center text-gray-300">No tasks</li>
+        <li className="text-center text-gray-300">No tasks to show</li>
       )}
     </ul>
   );

@@ -8,7 +8,7 @@ interface TaskItemProps {
 
 export default function TaskItem({ task }: TaskItemProps) {
   const { id, text, completed } = task;
-  const { deleteTask } = useContext(TaskContext);
+  const { toggleTaskStatus, deleteTask } = useContext(TaskContext);
 
   return (
     <li className="flex items-start justify-between gap-4 rounded-sm bg-white py-2">
@@ -17,7 +17,10 @@ export default function TaskItem({ task }: TaskItemProps) {
           className="peer hidden"
           type="checkbox"
           name="status"
-          defaultChecked={completed}
+          checked={completed}
+          onChange={() => {
+            toggleTaskStatus(id);
+          }}
         />
 
         <svg
