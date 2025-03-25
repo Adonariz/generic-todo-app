@@ -1,8 +1,21 @@
-export default function TaskItem() {
+import { Task } from "@shared/tasks";
+
+interface TaskItemProps {
+  task: Task;
+}
+
+export default function TaskItem({ task }: TaskItemProps) {
+  const { id, text, completed } = task;
+
   return (
     <li className="flex items-start justify-between gap-4 rounded-sm bg-white py-2">
       <label className="my-auto flex gap-x-2 select-none">
-        <input className="peer hidden" type="checkbox" name="status" />
+        <input
+          className="peer hidden"
+          type="checkbox"
+          name="status"
+          defaultChecked={completed}
+        />
 
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -35,15 +48,15 @@ export default function TaskItem() {
         </svg>
 
         <span className="text-lg peer-checked:text-gray-400 peer-checked:line-through">
-          Buy so much groceries you can't even imagine the sheer amount of
-          groceries you're going to buy. It's going to be so much that you won't
-          even be able to carry it all. You're going to need an industrial truck
-          to deliver them all.
+          {text}
         </span>
       </label>
 
       <div className="flex gap-4">
-        <button className="rounded-sm bg-gray-400 p-2 text-white transition-colors hover:bg-red-500">
+        <button
+          className="rounded-sm bg-gray-400 p-2 text-white transition-colors hover:bg-red-500"
+          onClick={() => console.log(`Delete task with id: ${id}`)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
