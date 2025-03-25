@@ -1,7 +1,7 @@
 import AddNewTask from "@components/add-new-task/AddNewTask";
 import FilterTabs from "@components/filter-tabs/FilterTabs";
 import TasksList from "@components/tasks-list/TasksList";
-import { TaskContextProvider } from "@context/tasks/TasksContext";
+import { TaskContextProvider } from "@context/tasks/TaskContextProvider";
 
 function App() {
   return (

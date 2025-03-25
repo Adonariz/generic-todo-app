@@ -1,4 +1,4 @@
-import { TaskContext } from "@context/tasks/TasksContext";
+import { TaskContext } from "@context/tasks/TaskContext";
 import { Task } from "@shared/tasks";
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 
@@ -19,17 +19,29 @@ export default function AddNewTask() {
 
   const [formData, setFormData] = useState<Task>(initialFormData);
 
+  /**
+   * Обработчик отправки формы
+   */
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
+    // Если поле пустое, то не добавляем задачу и сбрасываем форму
+    if (!formData.text.trim()) {
+      setFormData(initialFormData);
+      return;
+    }
+
     addTask({
       ...formData,
-      id: Date.now(),
+      id: Date.now(), // Генерируем уникальный id
     });
 
     setFormData(initialFormData);
   };
 
+  /**
+   * Обработчик изменения значения инпута
+   */
   const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const target = evt.target;
 

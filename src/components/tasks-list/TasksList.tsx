@@ -1,5 +1,6 @@
 import TaskItem from "@components/task-item/TaskItem";
-import { TaskContext } from "@context/tasks/TasksContext";
+import { TaskContext } from "@context/tasks/TaskContext";
+
 import { useContext } from "react";
 
 export default function TasksList() {
