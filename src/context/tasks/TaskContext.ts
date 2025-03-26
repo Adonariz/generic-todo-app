@@ -17,6 +17,7 @@ export interface TaskContextValue extends TaskState {
   addTask: (task: Task) => void;
   toggleTaskStatus: (id: number) => void;
   deleteTask: (id: number) => void;
+  deleteCompletedTasks: () => void;
   setFilter: (filter: TaskFilter) => void;
 }
 
@@ -28,5 +29,6 @@ export const TaskContext = createContext<TaskContextValue>({
   addTask: () => {},
   toggleTaskStatus: () => {},
   deleteTask: () => {},
+  deleteCompletedTasks: () => {},
   setFilter: () => {},
 });

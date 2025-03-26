@@ -37,6 +37,15 @@ export const TaskContextProvider = ({ children }: ProviderProps) => {
 
       dispatch({ type: ActionTypes.DELETE_TASK, payload: updatedTasks });
     },
+    // Удаление всех выполненных задач
+    deleteCompletedTasks: () => {
+      const updatedTasks = state.tasks.filter((task) => !task.completed);
+
+      dispatch({
+        type: ActionTypes.DELETE_ALL_COMPLETED_TASKS,
+        payload: updatedTasks,
+      });
+    },
     // Установка фильтра задач
     setFilter: (filter) => {
       dispatch({ type: ActionTypes.SET_TASK_FILTER, payload: filter });

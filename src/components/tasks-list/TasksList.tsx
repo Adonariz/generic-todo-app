@@ -7,7 +7,7 @@ import { TaskFilterValue } from "@src/const";
  * Список задач
  */
 export default function TasksList() {
-  const { tasks, filter } = useContext(TaskContext);
+  const { tasks, filter, deleteCompletedTasks } = useContext(TaskContext);
 
   const filteredTasks = tasks.filter((task) => {
     switch (filter) {
@@ -21,13 +21,25 @@ export default function TasksList() {
   });
 
   return (
-    <ul className="flex flex-col">
-      {filteredTasks.length > 0 &&
-        filteredTasks.map((task) => <TaskItem key={task.id} task={task} />)}
+    <>
+      <div className="flex justify-between">
+        <span className="text-gray-500">2 items left</span>
+        <button
+          className="text-gray-300 transition-colors hover:text-black focus:text-black"
+          onClick={deleteCompletedTasks}
+        >
+          Clear completed
+        </button>
+      </div>
 
-      {filteredTasks.length === 0 && (
-        <li className="text-center text-gray-300">No tasks to show</li>
-      )}
-    </ul>
+      <ul className="flex flex-col">
+        {filteredTasks.length > 0 &&
+          filteredTasks.map((task) => <TaskItem key={task.id} task={task} />)}
+
+        {filteredTasks.length === 0 && (
+          <li className="text-center text-gray-300">No tasks to show</li>
+        )}
+      </ul>
+    </>
   );
 }

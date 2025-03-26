@@ -28,6 +28,10 @@ export type TaskAction =
       payload: Task[];
     }
   | {
+      type: ActionTypes.DELETE_ALL_COMPLETED_TASKS;
+      payload: Task[];
+    }
+  | {
       type: ActionTypes.SET_TASK_FILTER;
       payload: TaskFilter;
     };

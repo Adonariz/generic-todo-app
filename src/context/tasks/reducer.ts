@@ -20,6 +20,8 @@ export default function reducer(state: TaskState, action: TaskAction) {
       return { ...state, tasks: action.payload };
     case ActionTypes.DELETE_TASK:
       return { ...state, tasks: action.payload };
+    case ActionTypes.DELETE_ALL_COMPLETED_TASKS:
+      return { ...state, tasks: action.payload };
     case ActionTypes.SET_TASK_FILTER:
       return { ...state, filter: action.payload };
     default:
