@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import TaskItem from "@components/task-item/TaskItem";
 import { TaskContext } from "@context/tasks/TaskContext";
 import { TaskFilterValue } from "@src/const";
+import { pluralize } from "@utils/formatters";
 
 /**
  * Список задач
@@ -20,10 +21,17 @@ export default function TasksList() {
     }
   });
 
+  const activeTasksCount = useMemo(
+    () => tasks.filter((task) => !task.completed).length,
+    [tasks],
+  );
+
   return (
     <>
       <div className="flex justify-between">
-        <span className="text-gray-500">2 items left</span>
+        <span className="text-gray-500">
+          {pluralize(activeTasksCount, "item")} left
+        </span>
         <button
           className="text-gray-300 transition-colors hover:text-black focus:text-black"
           onClick={deleteCompletedTasks}
